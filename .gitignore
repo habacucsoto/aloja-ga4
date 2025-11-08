@@ -1,0 +1,23 @@
+# Ignorar entorno virtual
+venv/
+ENV/
+env/
+.venv/
+
+# Ignorar notebooks y archivos grandes
+*.ipynb
+*.csv
+*.json
+*.log
+
+# Ignorar archivos del sistema
+.DS_Store
+__pycache__/
+*.pyc
+
+# Ignorar cualquier otra carpeta que no querés subir
+metrics.py
+properties.py
+test.py
+example.py
+text.txt
