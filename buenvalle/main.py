@@ -10,7 +10,7 @@ from google.analytics.data_v1beta.types import GetMetadataRequest
 import json
 
 # User config
-CREDENTIALS_INFO = st.secrets["ga4"]["key"]
+CREDENTIALS_INFO = st.secrets["ga4"]["json_key"]
 CREDENTIALS_DICT = json.loads(CREDENTIALS_INFO)
 CREDENTIALS = service_account.Credentials.from_service_account_info(CREDENTIALS_DICT)
 CLIENT = BetaAnalyticsDataClient(credentials=CREDENTIALS)
