@@ -7,15 +7,18 @@ from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import RunReportRequest, DateRange, Dimension, Metric
 from google.oauth2 import service_account
 from google.analytics.data_v1beta.types import GetMetadataRequest
+import json
 
 # User config
-KEY_PATH = "kao-sys-db-4517311457a6.json"
+CREDENTIALS_INFO = st.secrets["ga4"]["key"]
+CREDENTIALS_DICT = json.loads(CREDENTIALS_INFO)
+CREDENTIALS = service_account.Credentials.from_service_account_info(CREDENTIALS_DICT)
+CLIENT = BetaAnalyticsDataClient(credentials=CREDENTIALS)
 PROPERTY_ID = "480682703"
 HOTEL_NAME = "Buen Valle"
 START_DATE = "2025-10-01"
 END_DATE = "2025-10-31"
-credentials = service_account.Credentials.from_service_account_file(KEY_PATH)
-client = BetaAnalyticsDataClient(credentials=credentials)
+
 
 # Page config
 st.set_page_config(
@@ -34,7 +37,7 @@ def ga4_to_dataframe(dimensions, metrics, start_date, end_date):
         date_ranges=[DateRange(start_date=start_date, end_date=end_date)]
     )
 
-    response = client.run_report(request)
+    response = CLIENT.run_report(request)
 
     rows = []
     for row in response.rows:
