@@ -11,8 +11,7 @@ import json
 
 # User config
 CREDENTIALS_INFO = st.secrets["ga4"]["key"]
-CREDENTIALS_DICT = json.loads(CREDENTIALS_INFO)
-CREDENTIALS = service_account.Credentials.from_service_account_info(CREDENTIALS_DICT)
+CREDENTIALS = service_account.Credentials.from_service_account_info(CREDENTIALS_INFO)
 CLIENT = BetaAnalyticsDataClient(credentials=CREDENTIALS)
 PROPERTY_ID = "480682703"
 HOTEL_NAME = "Buen Valle"
